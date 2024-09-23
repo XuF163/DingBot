@@ -1,0 +1,5 @@
+{
+  "clientId": "dingwiqfbqssxli1sc32",
+  "clientSecret": "j7jWFRj_foOIgs4d--b-vFldclpgtp7Dhu9MOGX0ecIKjlQ4kWiSjpYVapqUMISm",
+  "webhook": "https://oapi.dingtalk.com/robot/sendBySession?session=5dc05ba83967a2f0283ef37ab8924874"
+}
