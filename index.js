@@ -1,7 +1,7 @@
 import { DWClient, EventAck, TOPIC_ROBOT } from 'dingtalk-stream';
 import https from 'https';
 import fs from 'fs';
-import { sendMsg } from './Msg/sendMsg.js';
+import {sendImg, sendMsg} from './Msg/sendMsg.js';
 import schedule from 'node-schedule';
 // 读取config.json文件中的clientId和clientSecret
 const config = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
@@ -39,11 +39,13 @@ const onBotMessage = (event) => {
     processedMsgIds.add(msgId);
     console.log('接收[消息][id]', content,msgId);
     //sendMsg(content)
-   if (content.includes('笑话')) {
+   if (content.includes('测试')) {
     fetch('https://api.lolimi.cn/API/xiaohua/api.php')
         .then(response => response.text()) // 直接解析为文本
         .then(text => {
             sendMsg(text); // 发送获取到的文本
+            //发图片测
+            sendImg('https://img.kookapp.cn/assets/2024-09/11/8KT0pgLDov0ug1ud.jpeg');
         })
         .catch(error => {
             console.error('获取笑话时出错:', error); // 错误处理
