@@ -8,7 +8,7 @@ if (!config.webhook) {
     throw new Error('请在config.json中配置webhook');
 }
 
- export function sendMsg (msg) {
+ export async function sendMsg (msg) {
     const webhook = sessionWebhook|| config.webhook;
 
     console.log('准备发送', msg);
@@ -51,7 +51,7 @@ if (!config.webhook) {
      return {status: EventAck.SUCCESS, message: 'OK'}; // message 属性可以是任意字符串；
 
  }
- export function  sendImg(url){
+ export async function  sendImg(url){
     const webhook = sessionWebhook|| config.webhook;
      console.log('准备发送', url);
     const responseMessage = {
