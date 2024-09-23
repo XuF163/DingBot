@@ -2,6 +2,7 @@ import { DWClient, EventAck, TOPIC_ROBOT } from 'dingtalk-stream';
 import https from 'https';
 import fs from 'fs';
 import { sendMsg } from './Msg/sendMsg.js';
+import schedule from 'node-schedule';
 // 读取config.json文件中的clientId和clientSecret
 const config = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
 // 检查是否有 clientId 和 clientSecret
@@ -38,6 +39,27 @@ const onBotMessage = (event) => {
         });
 
 }
+   //自动天气
+    function weatherFunction() {
+    console.log('函数在每天六点执行');
+    fetch('https://api.lolimi.cn/API/weather/?city=镇江')
+            .then(response => response.json()) // 解析为 JSON
+    .then(data => {
+        // 获取 data 部分
+        const weatherData = data.data;
+        console.log(weatherData); // 打印 data 的内容
+
+        // 你可以进一步使用 weatherData，例如发送消息
+        sendMsg(`城市: ${weatherData.city}, \n温度: ${weatherData.temp}°C,\n 天气: ${weatherData.weather}`);
+    })
+           .catch(error => {
+               console.error('获取笑话时出错:', error); // 错误处理
+           });
+}
+
+// 设置每天六点执行
+const job = schedule.scheduleJob('0 6 * * *', weatherFunction);
+//     const job = schedule.scheduleJob('* * * * *', weatherFunction);
    if (content.includes('天气')) {
        fetch('https://api.lolimi.cn/API/weather/?city=镇江')
             .then(response => response.json()) // 解析为 JSON
