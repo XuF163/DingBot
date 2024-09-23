@@ -50,7 +50,7 @@ const onBotMessage = (event) => {
         console.log(weatherData); // 打印 data 的内容
 
         // 你可以进一步使用 weatherData，例如发送消息
-        sendMsg(`城市: ${weatherData.city}, \n温度: ${weatherData.temp}°C,\n 天气: ${weatherData.weather}`);
+        sendMsg(`城市: ${weatherData.city}, \r\n温度: ${weatherData.temp}°C,\r\n 天气: ${weatherData.weather}`);
     })
            .catch(error => {
                console.error('获取笑话时出错:', error); // 错误处理
@@ -69,7 +69,7 @@ const job = schedule.scheduleJob('0 6 * * *', weatherFunction);
         console.log(weatherData); // 打印 data 的内容
 
         // 你可以进一步使用 weatherData，例如发送消息
-        sendMsg(`城市: ${weatherData.city}, \n温度: ${weatherData.temp}°C,\n 天气: ${weatherData.weather}`);
+        sendMsg(`城市: ${weatherData.city}, \r\n温度: ${weatherData.temp}°C,\r\n 天气: ${weatherData.weather}`);
     })
            .catch(error => {
                console.error('获取笑话时出错:', error); // 错误处理
