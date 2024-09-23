@@ -9,6 +9,8 @@ const config = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
 if (!config.clientId || !config.clientSecret) {
     throw new Error('请在config.json中配置clientId和clientSecret');
 }
+//消息处理队列
+const processedMsgIds = new Set();
 //初始化客户端
 const client = new DWClient({
     clientId: config.clientId,
@@ -23,9 +25,18 @@ const onBotMessage = (event) => {
     let message = JSON.parse(event.data);
     let content = (message?.text?.content || '').trim();
     let msgId = message?.msgId || '';
+    //存储msgId(十分钟)
+
     let webhook = message?.sessionWebhook || config.webhook || '';
     global.sessionWebhook = webhook
     console.log(webhook)
+    if (processedMsgIds.has(msgId)) {
+        console.log('消息已处理，忽略重复消息:', msgId);
+        return;
+    }
+
+    // 如果消息ID未处理过，处理该消息并将其记录
+    processedMsgIds.add(msgId);
     console.log('接收[消息][id]', content,msgId);
     //sendMsg(content)
    if (content.includes('笑话')) {
