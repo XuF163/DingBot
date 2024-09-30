@@ -3,6 +3,7 @@ import https from 'https';
 import fs from 'fs';
 import {sendImg, sendMsg} from './Msg/sendMsg.js';
 import schedule from 'node-schedule';
+import glm from './plugin/glm.js'
 // 读取config.json文件中的clientId和clientSecret
 const config = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
 // 检查是否有 clientId 和 clientSecret
@@ -39,6 +40,20 @@ const onBotMessage = (event) => {
     processedMsgIds.add(msgId);
     console.log('接收[消息][id]', content,msgId);
     //sendMsg(content)
+
+    const glmInstance = new glm();
+    glmInstance.chat(content)
+   .then(res => sendMsg(res)) // sendMsg 返回Promise
+   .then(result => {
+       // 处理 sendMsg 返回的结果
+       console.log('Message sent:', result);
+   })
+   .catch(error => {
+       // 处理可能发生的错误
+       console.error('Error:', error);
+   });
+
+
    if (content.includes('测试')) {
     fetch('https://api.lolimi.cn/API/xiaohua/api.php')
         .then(response => response.text()) // 直接解析为文本

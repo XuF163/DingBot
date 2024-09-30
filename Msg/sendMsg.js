@@ -16,7 +16,7 @@ if (!config.webhook) {
                  'msgtype': 'markdown',
                  'markdown': {
                      'title': '消息外显new',
-                     'text': `>${msg}`,
+                     'text': `${msg}`,
                  },
     };
              //在 JSON.stringify 之前打印 markdown.text 属性
