@@ -6,7 +6,7 @@ export default class glm {
 
   async chat(msg) {
     logs.push(msg)
-    console.log(logs)
+   
     const data = {
       model: 'glm-4-plus', // 你的模型编码
       messages: [
@@ -20,7 +20,7 @@ export default class glm {
       stream: false // 同步调用，等待一次性返回完整结果
     };
 
-
+     console.log(data)
     const response = await axios.post(url, data, {
       headers: {
         'Content-Type': 'application/json',
