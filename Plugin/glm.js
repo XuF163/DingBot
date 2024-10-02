@@ -6,6 +6,7 @@ export default class glm {
 
   async chat(msg) {
     logs.push(msg)
+    console.log(logs)
     const data = {
       model: 'glm-4-plus', // 你的模型编码
       messages: [
