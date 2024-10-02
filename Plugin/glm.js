@@ -7,7 +7,7 @@ export default class glm {
   async chat(msg) {
     logs.push(msg)
     const data = {
-      model: 'glm-4-flash', // 你的模型编码
+      model: 'glm-4-plus', // 你的模型编码
       messages: [
         {role: 'user', content: msg},
         {role: 'system',content: `这是你与用户之前的聊天记录${logs}`}
