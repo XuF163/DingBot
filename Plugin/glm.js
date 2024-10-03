@@ -2,17 +2,15 @@ import axios from "axios";
 const url = 'https://open.bigmodel.cn/api/paas/v4/chat/completions';
 const key = '5a0056fea2b67abc9f99590241d326de.GstO7aPoyEJEL7er'
 const logs= []
+const _messages = []
 export default class glm {
 
   async chat(msg) {
     logs.push(msg)
-   
+    _messages.push({role: 'user', content: msg})
     const data = {
       model: 'glm-4-plus', // 你的模型编码
-      messages: [
-        {role: 'user', content: msg},
-        {role: 'system',content: `这是你与用户之前的聊天记录${logs}`}
-      ],
+      messages: `${_message}`
       request_id: 'unique_request_id_123456', // 可选参数，唯一请求ID
       do_sample: true, // 启用采样策略
       temperature: 0.7, // 可选，控制输出随机性
@@ -31,7 +29,7 @@ export default class glm {
     // 输出返回结果
     console.log('glm-id', response.data.id);
     console.log('glmMsg',response.data.choices[0].message.content)
-    logs.push(response.data.choices[0].message.content)
+    _messages.push({role: 'system', content: response.data.choices[0].message.content})
     return response.data.choices[0].message.content;
 
 
