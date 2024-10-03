@@ -1,12 +1,15 @@
 import axios from "axios";
 const url = 'https://open.bigmodel.cn/api/paas/v4/chat/completions';
 const key = '5a0056fea2b67abc9f99590241d326de.GstO7aPoyEJEL7er'
-const logs= []
+
 const _messages = []
 export default class glm {
 
   async chat(msg) {
-    logs.push(msg)
+    if msg.includes(clear;){
+      _messages = []
+      return '已清除上下文'
+    }
     _messages.push({role: 'user', content: msg})
     const data = {
       model: 'glm-4-plus', // 你的模型编码
