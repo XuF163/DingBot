@@ -20,6 +20,11 @@ export default class glm {
       temperature: 0.7, // 可选，控制输出随机性
       max_tokens: 1024, // 可选，模型输出最大token数
       stream: false // 同步调用，等待一次性返回完整结果
+       "tools" : [{
+    "type": "web_search",
+    "web_search": {
+        "enable": true
+    }
     };
 
      console.log(data)
