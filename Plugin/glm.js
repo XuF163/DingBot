@@ -6,8 +6,9 @@ const _messages = []
 export default class glm {
 
   async chat(msg) {
-    if msg.includes(clear;){
-      _messages = []
+
+    if (msg.includes('clear;')){
+      _messages.length = 0
       return '已清除上下文'
     }
     _messages.push({role: 'user', content: msg})
