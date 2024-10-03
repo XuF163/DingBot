@@ -13,19 +13,19 @@ export default class glm {
     }
     _messages.push({role: 'user', content: msg})
     const data = {
-      model: 'glm-4-plus', // 你的模型编码
+      model: 'glm-4-0520', // 你的模型编码
       messages: _messages,
       request_id: 'unique_request_id_123456', // 可选参数，唯一请求ID
       do_sample: true, // 启用采样策略
       temperature: 0.7, // 可选，控制输出随机性
       max_tokens: 1024, // 可选，模型输出最大token数
-      stream: false // 同步调用，等待一次性返回完整结果
-       "tools" : [{
-    "type": "web_search",
-    "web_search": {
+      stream: false, // 同步调用，等待一次性返回完整结果
+      tools: {
+      "type": "web_search",
+      "web_search": {
         "enable": true
     }
-    };
+    }}
 
      console.log(data)
     const response = await axios.post(url, data, {
