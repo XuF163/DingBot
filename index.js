@@ -43,15 +43,16 @@ const onBotMessage = (event) => {
 
     const glmInstance = new glm();
     glmInstance.chat(content)
-   .then(res => sendMsg(res)) // sendMsg 返回Promise
-   .then(result => {
-       // 处理 sendMsg 返回的结果
-       console.log('Message sent:', result);
-   })
-   .catch(error => {
-       // 处理可能发生的错误
-       console.error('Error:', error);
-   });
+    glmInstance.draw(content)
+   // .then(res => sendMsg(res)) // sendMsg 返回Promise
+   // .then(result => {
+   //     // 处理 sendMsg 返回的结果
+   //     console.log('Message sent:', result);
+   // })
+   // .catch(error => {
+   //     // 处理可能发生的错误
+   //     console.error('Error:', error);
+   // });
 
 
    if (content.includes('测试')) {
