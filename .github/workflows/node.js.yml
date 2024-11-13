@@ -24,11 +24,12 @@ jobs:
         cache: 'pnpm'
         cache-dependency-path: 'pnpm-lock.yaml'
 
+    # 手动安装 pnpm
     - name: Install pnpm
-      run: npm install -g pnpm  # 安装 pnpm
+      run: npm install -g pnpm
 
     - name: Install dependencies
-      run: pnpm install  # 执行 pnpm i 安装依赖
+      run: pnpm install  # 执行 pnpm install 安装依赖
 
     - name: Run build
       run: pnpm run build --if-present  # 如果有 build 脚本则执行
